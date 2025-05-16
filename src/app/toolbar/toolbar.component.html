@@ -2,14 +2,27 @@
   <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="menuClick.emit()" >
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
   </button>
+
   <span>open-adoption-front</span>
+
+  <span class="spacer"></span>
+  
+  <button class="botao-tema-icon" (click)="alternarTema()">
+    <span class="material-icons">
+      {{ themeService.isDarkMode() ? 'toggle_on' : 'toggle_off' }}
+    </span>
+  </button>
+
+
 
   <button class="actions" mat-icon-button [matMenuTriggerFor]="menu" aria-label="actions">
     <mat-icon>more_vert</mat-icon>
   </button>
+  
 </mat-toolbar>
 
 <mat-menu #menu="matMenu">
+
   <button mat-menu-item>
     <mat-icon>logout</mat-icon>
     <span>Logout</span>

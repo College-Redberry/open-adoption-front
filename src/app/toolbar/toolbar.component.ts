@@ -3,6 +3,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { ThemeService } from '../theme/theme.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -17,4 +18,11 @@ import { MatMenuModule } from '@angular/material/menu';
 })
 export class ToolbarComponent {
   readonly menuClick = output();
+  temaAtivo = false;
+
+   constructor(public themeService: ThemeService) {}
+
+  alternarTema(): void {
+    this.themeService.toggleDarkMode();
+  }
 }
