@@ -1,0 +1,17 @@
+<mat-toolbar>
+  <ng-content select=".left-menu-action" />
+
+  <span>Open Adoption</span>
+
+  <button matIconButton class="toogle-theme" (click)="toggleDarkModeCommand.execute()">
+    <mat-icon>
+      @if (isDarkMode()) {
+        light_mode
+      } @else { 
+        dark_mode
+      }
+    </mat-icon>
+  </button>
+
+  <ng-content select=".right-menu-action" />
+</mat-toolbar>

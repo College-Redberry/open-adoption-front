@@ -1,0 +1,11 @@
+@use '@angular/material' as mat;
+
+mat-toolbar {
+  @include mat.toolbar-overrides((
+    container-background-color: var(--mat-sys-surface-container-highest),
+  ));
+}
+
+.toogle-theme {
+  margin-left: auto;
+}

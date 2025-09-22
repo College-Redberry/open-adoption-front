@@ -1,0 +1,45 @@
+@let sidenavRole = isHandset() ? 'dialog' : 'navigation';
+@let sidenavMode = isHandset() ? 'over' : 'side';
+
+@if (!isHandset()) {
+  <ng-container *ngTemplateOutlet="toolbar" />
+}
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav [fixedInViewport]="isHandset()" [attr.role]="sidenavRole" [mode]="sidenavMode" [opened]="isHandset() === false">
+    <mat-nav-list>
+      @if (isHandset()) {
+        <mat-toolbar>Menu</mat-toolbar>
+      }
+
+      @for (route of routes; track $index) {
+        <mat-list-item [routerLink]="route.path" routerLinkActive="mdc-list-item--activated">
+          @if (route.icon) {
+            <mat-icon matListItemIcon>{{ route.icon }}</mat-icon>
+          }
+  
+          <a matListItemTitle>{{ route.title }}</a>
+        </mat-list-item>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    @if (isHandset()) {
+      <ng-container *ngTemplateOutlet="toolbar" />
+    }
+
+    <router-outlet />
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<ng-template #toolbar>
+  <app-toolbar>
+    <button class="left-menu-action" mat-icon-button (click)="sidenav.toggle()" >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <button class="right-menu-action" matIconButton (click)="logOutCommand.execute()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </app-toolbar>
+</ng-template>
