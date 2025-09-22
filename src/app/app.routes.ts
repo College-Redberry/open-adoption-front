@@ -1,3 +1,29 @@
 import { Routes } from '@angular/router';
+import { authenticationGuard } from './infra/guard/logged';
 
-export const routes: Routes = [];
+const login = {
+    path: 'login',
+    title: 'Login',
+    loadComponent: () => import('./ui/pages/login/login').then(mod => mod.Login),
+}
+
+const redirectAllToLogin = { 
+    path: '**', 
+    redirectTo: 'login',
+}
+
+export const routes: Routes = [
+    {
+        path: '',
+        loadComponent: () => import('./ui/components/unlogged/unlogged').then(mod => mod.Unlogged),
+        children: [
+            login,
+        ]
+    },
+    {
+        path: '',
+        canActivate: [authenticationGuard()],
+        loadComponent: () => import('./ui/components/logged/logged').then(mod => mod.Logged),
+    },
+    redirectAllToLogin,
+];
