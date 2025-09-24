@@ -13,6 +13,8 @@ import { AsyncResult, Failure } from '../../../utils/result';
 import { MatIconModule } from '@angular/material/icon';
 import { createPasswordStrengthValidator } from '../../../domain/user/validation';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { EncryptAsyncronousRepo } from '../../../data/repository/encrypt/encrypt';
+import { EncryptRepo } from '../../../domain/encrypt/repository';
 
 @Component({
   selector: 'app-login',
@@ -33,6 +35,7 @@ export class Login {
   private snackBar = inject(MatSnackBar);
   private router = inject(Router);
   private authRepo = inject<AuthRepo>(AuthHttpRepo);
+  private encryptRepo = inject<EncryptRepo>(EncryptAsyncronousRepo);
 
   readonly showPassword = signal(false);
 
@@ -49,10 +52,14 @@ export class Login {
       return Failure(new Error("invalid form"));
     }
 
-    // TODO: implement private/public pem crypt to send passoword
     const { email, password } = this.form.getRawValue();
 
-    const result = await this.authRepo.logIn({email, password});
+    const encryptPasswordResult = await this.encryptRepo.encrypt(password);
+    if (encryptPasswordResult.isFailure()) {
+      return encryptPasswordResult;
+    }
+
+    const result = await this.authRepo.logIn({email, password: encryptPasswordResult.value});
     if (result.isFailure()) {
       this.snackBar.open("Error to login", "Close");
       return result;
