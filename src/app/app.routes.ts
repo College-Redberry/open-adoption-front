@@ -7,6 +7,12 @@ const login = {
     loadComponent: () => import('./ui/pages/login/login').then(mod => mod.Login),
 }
 
+const pets = {
+    path: 'pets',
+    title: 'Pets',
+    loadComponent: () => import('./ui/pages/pets/pets').then(mod => mod.Pets),
+}
+
 const redirectAllToLogin = { 
     path: '**', 
     redirectTo: 'login',
@@ -18,6 +24,7 @@ export const routes: Routes = [
         loadComponent: () => import('./ui/components/unlogged/unlogged').then(mod => mod.Unlogged),
         children: [
             login,
+            pets,
         ]
     },
     {
