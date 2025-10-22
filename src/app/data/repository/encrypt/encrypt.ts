@@ -32,8 +32,6 @@ export class EncryptAsyncronousRepo implements EncryptRepo {
       .replace(/-----END PUBLIC KEY-----/, '')
       .replace(/\s/g, '');
 
-      console.log(b64)
-    
     const binaryDer = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
 
     return window.crypto.subtle.importKey(
