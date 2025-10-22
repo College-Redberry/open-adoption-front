@@ -5,7 +5,6 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { RefreshInterceptor } from './infra/interceptor/refresh';
 import { AuthInterceptor } from './infra/interceptor/auth';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 const provideMaterialConfig = (): EnvironmentProviders => {
   return makeEnvironmentProviders([
@@ -19,6 +18,5 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(withInterceptors([RefreshInterceptor, AuthInterceptor])),
     provideMaterialConfig(),
-    provideAnimationsAsync(),
   ]
 };
