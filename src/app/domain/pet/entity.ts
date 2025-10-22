@@ -4,6 +4,7 @@ export interface PetProps {
   age: string;
   gender: string;
   isAdoped: boolean;
+  images?: string[];
 }
 
 export interface Pet extends PetProps {
