@@ -1,0 +1,87 @@
+<form [formGroup]="form" (ngSubmit)="submitCommand.execute()">
+  <mat-card>
+    <mat-card-title>Formulário de Adoção</mat-card-title>
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nome completo</mat-label>
+        <input matInput formControlName="name" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Telefone para contato</mat-label>
+        <input matInput formControlName="phone" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Idade</mat-label>
+        <input matInput type="number" min="0" formControlName="age" required>
+      </mat-form-field>
+
+      <label>Todos da residência concordam com a adoção?</label>
+      <mat-radio-group formControlName="house_hold_agreed" required>
+        <mat-radio-button [value]="true">Sim</mat-radio-button>
+        <mat-radio-button [value]="false">Não</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Você tem outros animais? Se sim, quantos?</mat-label>
+        <input matInput type="number" min="0" formControlName="already_pets" required>
+      </mat-form-field>
+
+      <label>Esses animais são castrados e vacinados?</label>
+      <mat-radio-group formControlName="already_pets_castrated_and_vaccinated" required>
+        <mat-radio-button [value]="true">Sim</mat-radio-button>
+        <mat-radio-button [value]="false">Não</mat-radio-button>
+      </mat-radio-group>
+
+      <label>Você mora em casa ou apartamento?</label>
+      <mat-radio-group formControlName="property" required>
+        <mat-radio-button value="house">Casa</mat-radio-button>
+        <mat-radio-button value="apartment">Apartamento</mat-radio-button>
+      </mat-radio-group>
+
+      <label>O imóvel é próprio ou alugado?</label>
+      <mat-radio-group formControlName="own_property" required>
+        <mat-radio-button [value]="true">Próprio</mat-radio-button>
+        <mat-radio-button [value]="false">Alugado</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Endereço completo (rua, número, CEP, referência)</mat-label>
+        <textarea matInput formControlName="address" required></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Renda</mat-label>
+        <input matInput type="number" min="0" formControlName="income" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Descreva o local onde o animal ficará (telas, espaço, etc.)</mat-label>
+        <textarea matInput formControlName="suitable_location" required></textarea>
+      </mat-form-field>
+
+      <label>Você deixaria o animal ter acesso à rua?</label>
+      <mat-radio-group formControlName="access_to_the_street" required>
+        <mat-radio-button [value]="true">Sim</mat-radio-button>
+        <mat-radio-button [value]="false">Não</mat-radio-button>
+      </mat-radio-group>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button align="right" color="primary" type="submit" [disabled]="form.invalid">
+        @if (!this.submitCommand.running()) {
+          Enviar
+        } @else {
+          <mat-spinner [diameter]="30" />
+        }
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
