@@ -4,7 +4,7 @@
         @for (pet of search.pets(); track pet.id; let isLast = $last) {
             @let image = pet.images?.at(0);
             @if (image) {
-                <div class="item" (cdkObserveContent)="isLast && search.loadNextPage()">
+                <div class="item" [routerLink]="['/pets', pet.id]" [state]="{ pet }" (cdkObserveContent)="isLast && search.loadNextPage()">
                     <img [src]="image" alt="">
                 </div>
             }

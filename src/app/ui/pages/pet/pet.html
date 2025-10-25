@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ pet()?.name }}</mat-card-title>
+    <mat-card-subtitle> {{ !pet()?.isAdoped ? "Ready for adoption" : "Already adopted" }} 🐾</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="carousel">
+      <img [src]="pet()?.images?.at(currentIndex)" alt="{{ pet()?.name }}" class="pet-image" />
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <div class="dots">
+      <button mat-icon-button class="nav-btn left" (click)="prevImage()">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      @for (image of pet()?.images; track $index; let i = $index) {
+        <button mat-icon-button [disabled]="i === currentIndex" (click)="currentIndex = i">
+          <mat-icon>{{
+            i === currentIndex ? 'radio_button_checked' : 'radio_button_unchecked'
+          }}</mat-icon>
+        </button>
+      }
+      <button mat-icon-button class="nav-btn right" (click)="nextImage()">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+    <a mat-raised-button color="primary" [routerLink]="['/pets', pet()?.id, 'form']">
+      Adopt {{ pet()?.name }}
+    </a>
+  </mat-card-actions>
+</mat-card>

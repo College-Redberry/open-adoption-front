@@ -19,6 +19,12 @@ const applyForm = {
     loadComponent: () => import('./ui/pages/apply-form/apply-form').then(mod => mod.ApplyForm),
 }
 
+const pet = {
+    path: 'pets/:id',
+    title: 'Pet',
+    loadComponent: () => import('./ui/pages/pet/pet').then(mod => mod.Pet),
+}
+
 const redirectAllToLogin = { 
     path: '**', 
     redirectTo: 'login',
@@ -32,6 +38,7 @@ export const routes: Routes = [
             login,
             pets,
             applyForm,
+            pet,
         ]
     },
     {
