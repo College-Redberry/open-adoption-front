@@ -1,0 +1,45 @@
+@use '@angular/material' as mat;
+
+:host {
+    height: 100%;
+    box-sizing: border-box;
+    padding: 1rem;
+    display: block;
+
+    @include mat.table-overrides((
+        background-color: transparent,
+    ));
+
+    ::ng-deep mat-paginator {
+        background-color: transparent;
+    }
+}
+
+mat-card {
+    height: 100%;
+}
+
+mat-card-header {
+    align-items: center;
+    justify-content: space-between;
+}
+
+mat-card-content {
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.table-container {
+    height: 100%;
+    overflow: auto;
+}
+
+mat-progress-bar {
+    margin: 2rem 0;
+}
+
+td.mat-column-actions {
+    width: 20px;
+}

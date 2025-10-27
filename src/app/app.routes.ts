@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { authenticationGuard } from './infra/guard/logged';
 
 const login = {
-    path: 'login',
+    path: 'admin/login',
     title: 'Login',
     loadComponent: () => import('./ui/pages/login/login').then(mod => mod.Login),
 }
@@ -25,9 +25,15 @@ const pet = {
     loadComponent: () => import('./ui/pages/pet/pet').then(mod => mod.Pet),
 }
 
+const petsTable = {
+    path: 'admin/pets',
+    title: 'Pets',
+    loadComponent: () => import('./ui/pages/pets-table/pets-table').then(mod => mod.PetsTable),
+}
+
 const redirectAllToLogin = { 
     path: '**', 
-    redirectTo: 'login',
+    redirectTo: 'admin/login',
 }
 
 export const routes: Routes = [
@@ -42,9 +48,12 @@ export const routes: Routes = [
         ]
     },
     {
-        path: '',
+        path: 'admin',
         canActivate: [authenticationGuard()],
         loadComponent: () => import('./ui/components/logged/logged').then(mod => mod.Logged),
+        children: [
+            petsTable,
+        ]
     },
     redirectAllToLogin,
 ];
