@@ -31,6 +31,12 @@ const petsTable = {
     loadComponent: () => import('./ui/pages/pets-table/pets-table').then(mod => mod.PetsTable),
 }
 
+const applicationsTable = {
+    path: 'applications',
+    title: 'Applications',
+    loadComponent: () => import('./ui/pages/applications-table/applications-table').then(mod => mod.ApplicationsTable),
+}
+
 const redirectAllToLogin = { 
     path: '**', 
     redirectTo: 'admin/login',
@@ -53,6 +59,7 @@ export const routes: Routes = [
         loadComponent: () => import('./ui/components/logged/logged').then(mod => mod.Logged),
         children: [
             petsTable,
+            applicationsTable,
         ]
     },
     redirectAllToLogin,

@@ -36,11 +36,11 @@
                 </ng-container>
 
                 <!-- Adoption Status Column -->
-                <ng-container matColumnDef="isAdoped">
+                <ng-container matColumnDef="is_adopted">
                     <th mat-header-cell *matHeaderCellDef> Adopted </th>
                     <td mat-cell *matCellDef="let pet">
-                    <mat-icon [color]="pet.isAdoped ? 'primary' : 'warn'">
-                        {{ pet.isAdoped ? 'check_circle' : 'cancel' }}
+                    <mat-icon [color]="pet.is_adopted ? 'primary' : 'warn'">
+                        {{ pet.is_adopted ? 'check_circle' : 'cancel' }}
                     </mat-icon>
                     </td>
                 </ng-container>

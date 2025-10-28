@@ -48,8 +48,8 @@ export class Logged {
       icon: "pets",
     },
     {
-      title: "Form",
-      path: "/admin/forms",
+      title: "Applications",
+      path: "/admin/applications",
       icon: "assignment",
     },
   ];

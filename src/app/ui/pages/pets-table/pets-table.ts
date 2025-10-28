@@ -41,7 +41,7 @@ export class PetsTable {
   private petRepo = inject<PetRepo>(PetHttpRepo);
   private dialog = inject(MatDialog);
 
-  displayedColumns: string[] = ['name', 'breed', 'age', 'gender', 'isAdoped', 'actions'];
+  displayedColumns: string[] = ['name', 'breed', 'age', 'gender', 'is_adopted', 'actions'];
   dataSource = new MatTableDataSource<PetProps>();
 
   readonly pagination = signal<Pagination>({ limit: 10, offset: 0 });
@@ -58,12 +58,12 @@ export class PetsTable {
   public add() {
     this.dialog.open(PetsForm, {
       data: null,
-    });
+    }).afterClosed().subscribe(() => this.petsPage.reload());
   }
 
   public edit(pet: Pet) {
     this.dialog.open(PetsForm, {
       data: pet,
-    });
+    }).afterClosed().subscribe(() => this.petsPage.reload());
   }
 }

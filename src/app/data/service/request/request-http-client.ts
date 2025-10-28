@@ -41,6 +41,10 @@ export class RequestHttpClient {
     try {
       const req$ = this.http.get<ListResponse<Request>>(this.baseUrl);
       const response = await lastValueFrom(req$);
+
+      response.data = response.data.filter(x => x.id != "");
+      response.count = response.data.length;
+
       return Success(response);
     } catch (e) {
       return Failure(e);

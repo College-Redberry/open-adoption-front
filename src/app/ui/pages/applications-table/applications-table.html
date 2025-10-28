@@ -1,0 +1,86 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Adoption Requests</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="table-container">
+      <table mat-table [dataSource]="requestsPage.value()?.data || []">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let req"> {{ req.name }} </td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let req"> {{ req.email }} </td>
+        </ng-container>
+
+        <!-- Phone Column -->
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef> Phone </th>
+          <td mat-cell *matCellDef="let req"> {{ req.phone }} </td>
+        </ng-container>
+
+        <!-- Age Column -->
+        <ng-container matColumnDef="age">
+          <th mat-header-cell *matHeaderCellDef> Age </th>
+          <td mat-cell *matCellDef="let req"> {{ req.age }} </td>
+        </ng-container>
+
+        <!-- Property Column -->
+        <ng-container matColumnDef="property">
+          <th mat-header-cell *matHeaderCellDef> Property </th>
+          <td mat-cell *matCellDef="let req"> {{ req.property }} </td>
+        </ng-container>
+
+        <!-- Approved Column -->
+        <ng-container matColumnDef="approved_at">
+          <th mat-header-cell *matHeaderCellDef> Approved </th>
+          <td mat-cell *matCellDef="let req">
+            <mat-icon [color]="req.approved_at ? 'primary' : 'warn'">
+              {{ req.approved_at !== "0001-01-01T00:00:00Z" ? 'check_circle' : 'cancel' }}
+            </mat-icon>
+          </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let req">
+            <button
+              mat-raised-button
+              color="accent"
+              (click)="approve(req)"
+              [disabled]="req.approved_at !== '0001-01-01T00:00:00Z'"
+            >
+              <mat-icon>check</mat-icon>
+              Approve
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Table Header & Rows -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      @if (requestsPage.isLoading()) {
+        @for (item of [].constructor(15); track $index) {
+          <mat-progress-bar mode="indeterminate" />
+        }
+      }
+    </div>
+
+    <mat-paginator
+      #paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      [pageSize]="10"
+      [length]="requestsPage.value()?.count ?? paginator.length"
+      (page)="loadNextPage($event)"
+    />
+  </mat-card-content>
+</mat-card>
