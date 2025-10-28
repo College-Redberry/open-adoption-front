@@ -66,7 +66,7 @@ export class Login {
     }
 
     this.snackBar.open("Successfully logged", "Close");
-    this.router.navigate(["home"]);
+    this.router.navigate(["/","admin", "pets"]);
 
     return result;
   }

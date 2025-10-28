@@ -82,6 +82,9 @@ export class PetHttpClient {
 
       const request$ = this.http.get<ListResponse<Pet>>(this.baseUrl, options);
       const response = await lastValueFrom(request$);
+
+      response.data = response.data.filter(x => x.id != "");
+      response.count = response.data.length;
       return Success(response);
     } catch (e) {
       return Failure(e);
@@ -102,9 +105,15 @@ export class PetHttpClient {
     }
   }
 
-  async saveImagesById(id: string, images: string[]): AsyncResult<void> {
+  async saveImagesById(id: string, images: File[]): AsyncResult<void> {
     try {
-      const request$ = this.http.post<void>(`${this.baseUrl}/${id}/images`, { images });
+      const formData = new FormData();
+
+      images.forEach((file) => {
+        formData.append('files', file);
+      });
+
+      const request$ = this.http.post<void>(`${this.baseUrl}/${id}/images`, formData);
       await lastValueFrom(request$);
       return Success();
     } catch (e) {

@@ -11,13 +11,13 @@ import { debounceTime } from 'rxjs';
 import { PetHttpRepo } from '../../../data/repository/pet/pet-http-repo';
 import { PetRepo } from '../../../domain/pet/repository';
 import { Pagination } from '../../../utils/http_response';
-import { DatePipe } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { RouterLink } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { PetsForm } from '../../components/pets-form/pets-form';
 
 @Component({
   selector: 'app-pets-table',
@@ -31,7 +31,6 @@ import { RouterLink } from '@angular/router';
     MatIcon,
     MatButtonModule,
     MatProgressSpinnerModule,
-    RouterLink,
     MatProgressBarModule,
     MatMenuModule,
   ],
@@ -40,8 +39,9 @@ import { RouterLink } from '@angular/router';
 })
 export class PetsTable {
   private petRepo = inject<PetRepo>(PetHttpRepo);
+  private dialog = inject(MatDialog);
 
-  displayedColumns: string[] = ['name', 'breed', 'age', 'gender', 'isAdoped'];
+  displayedColumns: string[] = ['name', 'breed', 'age', 'gender', 'isAdoped', 'actions'];
   dataSource = new MatTableDataSource<PetProps>();
 
   readonly pagination = signal<Pagination>({ limit: 10, offset: 0 });
@@ -53,5 +53,17 @@ export class PetsTable {
 
   public loadNextPage(page: PageEvent) {
     this.pagination.set({ limit: page.pageSize, offset: page.pageIndex });
+  }
+
+  public add() {
+    this.dialog.open(PetsForm, {
+      data: null,
+    });
+  }
+
+  public edit(pet: Pet) {
+    this.dialog.open(PetsForm, {
+      data: pet,
+    });
   }
 }

@@ -35,7 +35,7 @@ export class PetHttpRepo implements PetRepo {
     return this.petHttpClient.listImagesById(id);
   }
 
-  async saveImagesById(id: string, images: string[]): AsyncResult<void> {
+  async saveImagesById(id: string, images: File[]): AsyncResult<void> {
     return this.petHttpClient.saveImagesById(id, images);
   }
 }

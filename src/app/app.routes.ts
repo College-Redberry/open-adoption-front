@@ -26,7 +26,7 @@ const pet = {
 }
 
 const petsTable = {
-    path: 'admin/pets',
+    path: 'pets',
     title: 'Pets',
     loadComponent: () => import('./ui/pages/pets-table/pets-table').then(mod => mod.PetsTable),
 }

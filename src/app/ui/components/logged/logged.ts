@@ -43,13 +43,13 @@ export class Logged {
 
   readonly routes: Route[] = [
     {
-      title: "Dashboard",
-      path: "dashboard",
-      icon: "dashboard",
+      title: "Pets",
+      path: "/admin/pets",
+      icon: "pets",
     },
     {
-      title: "Exams",
-      path: "/exams",
+      title: "Form",
+      path: "/admin/forms",
       icon: "assignment",
     },
   ];

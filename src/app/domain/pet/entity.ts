@@ -3,7 +3,7 @@ export interface PetProps {
   breed: string;
   age: string;
   gender: string;
-  isAdoped: boolean;
+  is_adoped: boolean;
   images?: string[];
 }
 
