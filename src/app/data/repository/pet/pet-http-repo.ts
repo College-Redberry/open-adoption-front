@@ -4,6 +4,7 @@ import { Pet, PetProps } from "../../../domain/pet/entity";
 import { AsyncResult } from "../../../utils/result";
 import { PetHttpClient } from "../../service/pet/pet-http-client";
 import { ListResponse, Pagination } from "../../../utils/http_response";
+import { Filters } from "../../../domain/pet/types";
 
 @Injectable({
   providedIn: "root",
@@ -27,8 +28,8 @@ export class PetHttpRepo implements PetRepo {
     return this.petHttpClient.getById(id);
   }
 
-  async list(search: string, pagination: Pagination): AsyncResult<ListResponse<Pet>> {
-    return this.petHttpClient.list(search, pagination);
+  async list(filters: Filters, pagination: Pagination): AsyncResult<ListResponse<Pet>> {
+    return this.petHttpClient.list(filters, pagination);
   }
 
   async listImagesById(id: string): AsyncResult<string[]> {

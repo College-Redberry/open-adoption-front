@@ -48,7 +48,7 @@ export class PetsTable {
 
   readonly petsPage = resource({
     params: () => ({ userId: "", pagination: this.pagination() }),
-    loader: ({ params }) => this.petRepo.list("", params.pagination).then(value => value.unwrap()),
+    loader: ({ params }) => this.petRepo.list({}, params.pagination).then(value => value.unwrap()),
   });
 
   public loadNextPage(page: PageEvent) {

@@ -6,6 +6,7 @@ import { environment } from "../../../../environments/environment";
 import { Pet, PetProps } from "../../../domain/pet/entity";
 import { BYPASS_AUTH } from "../../../infra/interceptor/context";
 import { ListResponse, Pagination } from "../../../utils/http_response";
+import { Filters } from "../../../domain/pet/types";
 
 @Injectable({
   providedIn: "root",
@@ -62,16 +63,27 @@ export class PetHttpClient {
     }
   }
 
-  async list(search: string, pagination: Pagination): AsyncResult<ListResponse<Pet>>  {
+  async list(filters: Filters, pagination: Pagination): AsyncResult<ListResponse<Pet>>  {
     try {
       let params = new HttpParams()
-      .set('offset', pagination.offset);
+        .set('offset', pagination.offset);
 
-      if (search) {
-        params = params.set('search', search);
+      if (filters.name !== undefined) {
+        params = params.set("name", filters.name)
       }
-
-      if (pagination.limit) {
+      if (filters.breed !== undefined) {
+        params = params.set("breed", filters.breed)
+      }
+      if (filters.age !== undefined) {
+        params = params.set("age", filters.age)
+      }
+      if (filters.gender !== undefined) {
+        params = params.set("gender", filters.gender)
+      }
+      if (filters.is_adopted !== undefined && filters.is_adopted !== null) {
+        params = params.set("is_adopted", filters.is_adopted)
+      }
+      if (pagination.limit !== undefined) {
         params = params.set('limit', pagination.limit)
       }
 
@@ -83,8 +95,6 @@ export class PetHttpClient {
       const request$ = this.http.get<ListResponse<Pet>>(this.baseUrl, options);
       const response = await lastValueFrom(request$);
 
-      response.data = response.data.filter(x => x.id != "");
-      response.count = response.data.length;
       return Success(response);
     } catch (e) {
       return Failure(e);

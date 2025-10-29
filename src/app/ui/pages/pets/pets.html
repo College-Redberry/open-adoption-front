@@ -9,5 +9,13 @@
                 </div>
             }
         }
+
+        @if (search.petPage.isLoading()) {
+            @for (item of [].constructor(15); track $index) {
+                <div class="item">
+                    <mat-spinner [diameter]="200" />
+                </div>
+            }
+        }
     </section>
 </div>

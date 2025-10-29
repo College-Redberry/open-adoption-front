@@ -6,7 +6,7 @@
 .pets {
   overflow: auto;
   overflow-x: hidden;
-  height: 85%;
+  height: 90%;
 
   section {
     column-count: auto;
@@ -15,13 +15,15 @@
 }
 
 .item {
-  display: inline-block;
+  display: inline-flex;
   width: 100%;
   margin: 0 0 10px;
   background: white;
   border: 1px solid black;
   height: 300px;
   transition: height 0.3s ease;
+  align-items: center;
+  justify-content: center;
 
   img {
     width: 100%;

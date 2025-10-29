@@ -1,5 +1,32 @@
 <mat-form-field appearance="outline">
-  <mat-label>Search</mat-label>
-  <input matInput [(ngModel)]="search" placeholder="Type to search..." />
-  <mat-icon matSuffix>search</mat-icon>
+  <mat-label>Name</mat-label>
+  <input matInput [(ngModel)]="name" placeholder="Type pet name" />
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label>Breed</mat-label>
+  <input matInput [(ngModel)]="breed" placeholder="Type breed" />
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label>Age</mat-label>
+  <input matInput [(ngModel)]="age" placeholder="Type age" />
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label>Gender</mat-label>
+  <mat-select [(ngModel)]="gender">
+    <mat-option value="">All</mat-option>
+    <mat-option value="male">Male</mat-option>
+    <mat-option value="female">Female</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label>Adopted</mat-label>
+  <mat-select [(ngModel)]="isAdopted">
+    <mat-option [value]="null">All</mat-option>
+    <mat-option [value]="true">Yes</mat-option>
+    <mat-option [value]="false">No</mat-option>
+  </mat-select>
 </mat-form-field>
