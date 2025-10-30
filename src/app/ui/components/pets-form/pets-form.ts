@@ -72,7 +72,7 @@ export class PetsForm {
       breed: this.form.getRawValue().breed!,
       age: this.form.getRawValue().age!.toString(),
       gender: this.form.getRawValue().gender!,
-      is_adoped: this.form.getRawValue().isAdoped!,
+      is_adopted: this.form.getRawValue().isAdoped!,
     }
 
     const result = await (!this.data ? this.petRepo.create(body) : this.petRepo.update(this.data.id, body));

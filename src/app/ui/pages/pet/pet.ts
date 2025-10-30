@@ -22,7 +22,10 @@ export class Pet {
   constructor(private router: Router) {
     const nav = this.router.getCurrentNavigation();
     const petData = nav?.extras?.state?.['pet'] as PetI | undefined;
-    if (petData) this.pet.set(petData);
+    if (petData) {
+      petData.images = petData.images?.reverse();
+      this.pet.set(petData);
+    }
   }
 
   currentIndex = 0;

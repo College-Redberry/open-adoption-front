@@ -4,7 +4,7 @@ export interface PetProps {
   description: string;
   age: string;
   gender: string;
-  is_adoped: boolean;
+  is_adopted: boolean;
   images?: string[];
 }
 

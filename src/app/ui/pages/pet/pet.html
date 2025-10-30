@@ -1,12 +1,49 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>{{ pet()?.name }}</mat-card-title>
-    <mat-card-subtitle> {{ !pet()?.is_adoped ? "Ready for adoption" : "Already adopted" }} 🐾</mat-card-subtitle>
+    <mat-card-subtitle> {{ !pet()?.is_adopted ? "Ready for adoption" : "Already adopted" }} 🐾</mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
     <div class="carousel">
       <img [src]="pet()?.images?.at(currentIndex)" alt="{{ pet()?.name }}" class="pet-image" />
+    </div>
+
+    <div class="pet-info">
+      <div class="info-item">
+        <span class="label">Breed:</span>
+        <span class="value">{{ pet()?.breed }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Description: </span>
+        <span class="value">{{ pet()?.description }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Age:</span>
+        <span class="value">{{ pet()?.age }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Gender:</span>
+        <span class="value text-capitalize">{{ pet()?.gender }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Status:</span>
+        <span
+          class="value status"
+          [class.adopted]="pet()?.is_adopted"
+          [class.available]="!pet()?.is_adopted"
+        >
+          {{ pet()?.is_adopted ? 'Adopted' : 'Available' }}
+        </span>
+      </div>
+
+          <a mat-raised-button color="primary" [disabled]="pet()?.is_adopted" [routerLink]="['/pets', pet()?.id, 'form']">
+      Adopt {{ pet()?.name }}
+    </a>
     </div>
   </mat-card-content>
 
@@ -26,8 +63,5 @@
         <mat-icon>chevron_right</mat-icon>
       </button>
     </div>
-    <a mat-raised-button color="primary" [routerLink]="['/pets', pet()?.id, 'form']">
-      Adopt {{ pet()?.name }}
-    </a>
   </mat-card-actions>
 </mat-card>
