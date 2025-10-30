@@ -11,22 +11,22 @@
 
     <div class="pet-info">
       <div class="info-item">
-        <span class="label">Breed:</span>
+        <span class="label">Tipo:</span>
         <span class="value">{{ pet()?.breed }}</span>
       </div>
 
       <div class="info-item">
-        <span class="label">Description: </span>
+        <span class="label">Descrição: </span>
         <span class="value">{{ pet()?.description }}</span>
       </div>
 
       <div class="info-item">
-        <span class="label">Age:</span>
+        <span class="label">Idade:</span>
         <span class="value">{{ pet()?.age }}</span>
       </div>
 
       <div class="info-item">
-        <span class="label">Gender:</span>
+        <span class="label">Gênero:</span>
         <span class="value text-capitalize">{{ pet()?.gender }}</span>
       </div>
 
@@ -41,8 +41,8 @@
         </span>
       </div>
 
-          <a mat-raised-button color="primary" [disabled]="pet()?.is_adopted" [routerLink]="['/pets', pet()?.id, 'form']">
-      Adopt {{ pet()?.name }}
+      <a mat-raised-button color="primary" [disabled]="pet()?.is_adopted" [routerLink]="['/pets', pet()?.id, 'form']">
+      Adotar {{ pet()?.name }}
     </a>
     </div>
   </mat-card-content>

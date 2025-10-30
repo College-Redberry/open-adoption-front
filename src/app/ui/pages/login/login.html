@@ -9,15 +9,15 @@
                 <mat-label>Email</mat-label>
                 <input matInput formControlName="email" type="email" autocomplete="current-email" />
                 @if (form.controls.email.hasError('required')) {
-                    <mat-error>Email is required</mat-error>
+                    <mat-error>Email é obrigatório</mat-error>
                 }
                 @if (form.controls.email.hasError('email')) {
-                    <mat-error>Invalid email address</mat-error>
+                    <mat-error>Email é inválido</mat-error>
                 }
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Password</mat-label>
+                <mat-label>Senha</mat-label>
                 <input matInput formControlName="password" [type]="showPassword() ? 'text' : 'password'" autocomplete="current-password"/>
                 <mat-icon matSuffix (click)="showPassword.set(!showPassword())">
                     @if (showPassword()) {
@@ -28,22 +28,22 @@
                 </mat-icon>
 
                 @if (form.controls.password.hasError('required')) {
-                    <mat-error>Password is required</mat-error>
+                    <mat-error>Senha é obrigatório</mat-error>
                 }
                 @else if (form.controls.password.hasError('minlength')) {
-                    <mat-error>Must be at least 8 characters</mat-error>
+                    <mat-error>Deve ter 8 caracteres</mat-error>
                 }
                 @else if (form.controls.password.hasError('hasNotUpperCase')) {
-                    <mat-error>Must have an upper case letter</mat-error>
+                    <mat-error>Deve ter pelo menos uma letra maiúscula</mat-error>
                 }
                 @else if (form.controls.password.hasError('hasNotLowerCase')) {
-                    <mat-error>Must have a lower case letter</mat-error>
+                    <mat-error>Deve ter pelo menos uma letra minúscula</mat-error>
                 }
                 @else if (form.controls.password.hasError('hasNotNumber')) {
-                    <mat-error>Must have a number</mat-error>
+                    <mat-error>Deve ter pelo menos um número</mat-error>
                 }
                 @else if (form.controls.password.hasError('hasNotSpecialChar')) {
-                    <mat-error>Must have a special character</mat-error>
+                    <mat-error>Deve ter pelo menos um caractere especial </mat-error>
                 }
             </mat-form-field>
 

@@ -58,7 +58,7 @@ export class ApplicationsTable {
   public async approve(req: Request) {
     this.dialog.open(ConfirmDialog, {
       data: {
-        content: "Are you sure?",
+        content: "Tem certeza?",
       },
     }).afterClosed().subscribe(() => {
       this.requestRepo.approve(req.id).then(() => {

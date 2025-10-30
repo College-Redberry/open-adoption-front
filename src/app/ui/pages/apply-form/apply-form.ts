@@ -59,11 +59,11 @@ export class ApplyForm {
 
     const result = await this.requestRepo.create({...this.form.getRawValue(), pet_id: this.petId()});
     if (result.isFailure()) {
-      this.snackBar.open("Error to submit", "Close");
+      this.snackBar.open("Erro ao submeter", "Fechar");
       return result;
     }
 
-    this.snackBar.open("Successfully submited", "Close");
+    this.snackBar.open("Submetido com sucesso", "Fechar");
     this.router.navigate(["pets"]);
 
     return result;

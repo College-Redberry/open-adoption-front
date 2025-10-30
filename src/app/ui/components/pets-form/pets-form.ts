@@ -77,7 +77,7 @@ export class PetsForm {
 
     const result = await (!this.data ? this.petRepo.create(body) : this.petRepo.update(this.data.id, body));
     if (result.isFailure()) {
-      this.snackBar.open(`Error to ${!this.data ? "save" : "edit"}`, "Close");
+      this.snackBar.open(`Erro ao ${!this.data ? "salvar" : "editar"}`, "Fechar");
       return result;
     }
 
@@ -85,7 +85,7 @@ export class PetsForm {
       this.petRepo.saveImagesById(this.data?.id ?? result.value!, this.selectedFiles())
     }
 
-    this.snackBar.open(`Successfully ${!this.data ? "saved" : "edited"}`, "Close");
+    this.snackBar.open(`${!this.data ? "Salvo" : "Editado"} com sucesso`, "Fechar");
     this.dialogRef.close();
 
     return result;

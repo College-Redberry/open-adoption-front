@@ -61,11 +61,11 @@ export class Login {
 
     const result = await this.authRepo.logIn({email, password: encryptPasswordResult.value});
     if (result.isFailure()) {
-      this.snackBar.open("Error to login", "Close");
+      this.snackBar.open("Erro ao logar", "Fechar");
       return result;
     }
 
-    this.snackBar.open("Successfully logged", "Close");
+    this.snackBar.open("Logado com sucesso", "Fechar");
     this.router.navigate(["/","admin", "pets"]);
 
     return result;

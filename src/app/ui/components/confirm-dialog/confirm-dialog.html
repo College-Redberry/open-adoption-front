@@ -8,10 +8,10 @@
 
 <mat-dialog-actions align="end">
     @if (!data.hideCancel) {
-        <button matButton mat-dialog-close cdkFocusInitial>{{ data.cancelLabel || "cancel" }}</button>
+        <button matButton mat-dialog-close cdkFocusInitial>{{ data.cancelLabel || "cancelar" }}</button>
     }
 
     @if (!data.hideConfirm) {
-        <button matButton [mat-dialog-close]="true">{{ data.confirmLabel || "accept"}}</button>
+        <button matButton [mat-dialog-close]="true">{{ data.confirmLabel || "aceitar"}}</button>
     }
 </mat-dialog-actions>
