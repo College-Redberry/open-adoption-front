@@ -1,6 +1,7 @@
 export interface PetProps {
   name: string;
   breed: string;
+  description: string;
   age: string;
   gender: string;
   is_adoped: boolean;

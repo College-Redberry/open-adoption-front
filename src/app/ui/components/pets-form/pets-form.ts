@@ -46,6 +46,7 @@ export class PetsForm {
 
   readonly form = this.fb.group({
     name: ['', Validators.required],
+    description: ['', Validators.required],
     breed: ['', Validators.required],
     age: ['', Validators.required],
     gender: ['', Validators.required],
@@ -67,6 +68,7 @@ export class PetsForm {
 
     const body: PetProps = {
       name: this.form.getRawValue().name!,
+      description: this.form.getRawValue().description!,
       breed: this.form.getRawValue().breed!,
       age: this.form.getRawValue().age!.toString(),
       gender: this.form.getRawValue().gender!,

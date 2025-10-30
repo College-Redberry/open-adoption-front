@@ -41,7 +41,7 @@ export class PetsTable {
   private petRepo = inject<PetRepo>(PetHttpRepo);
   private dialog = inject(MatDialog);
 
-  displayedColumns: string[] = ['name', 'breed', 'age', 'gender', 'is_adopted', 'actions'];
+  displayedColumns: string[] = ['name', 'description', 'breed', 'age', 'gender', 'is_adopted', 'actions'];
   dataSource = new MatTableDataSource<PetProps>();
 
   readonly pagination = signal<Pagination>({ limit: 10, offset: 0 });
